@@ -59,26 +59,56 @@ section{
     padding: 0 5%;
 }
 section .content{
-    font-size: 3.7rem;
+    /* Use a base clamp for the main heading container so child text scales nicely */
+    font-size: clamp(1rem, 1rem + 1.8vw, 3.7rem);
     margin: 6rem 2rem 0;
-    line-height: 1.1;
+    line-height: 1.15;
     max-width: 45%;
     gap: 1rem;
     flex-direction: column;
 }
 section .content h1 {
-    margin: 0;
+    margin: 0 0 0.25rem 0;
+    /* h1 will scale relative to the container font-size but keep visual hierarchy */
+    font-size: clamp(2rem, 2rem + 4vw, 5rem);
+    line-height: 1.03;
+    font-weight: 700;
 }
 section .content h1 span{
     color: #007146;
-    font-size: 5rem;
+    /* Slightly larger and bolder for emphasis */
+    font-size: clamp(2.2rem, 2.2rem + 4.5vw, 5.5rem);
     font-weight: 800;
+    display: inline-block;
 }
 section .content p{
-    font-size: 1.2rem;
+    font-size: clamp(0.95rem, 0.95rem + 0.6vw, 1.2rem);
     margin: 0;
-    /* margin: 1rem 2rem 0.5rem; */
     margin-top: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Small screens: ensure the content fits and remains readable */
+@media (max-width: 720px) {
+    section{
+        padding: 0 6%;
+    }
+    section .content{
+        max-width: 100%;
+        margin: 4rem 0 0;
+        font-size: clamp(0.95rem, 0.95rem + 2vw, 2rem);
+    }
+    section .content h1{
+        font-size: clamp(1.6rem, 1.6rem + 3.5vw, 3rem);
+    }
+    section .content h1 span{
+        font-size: clamp(1.8rem, 1.8rem + 3.8vw, 3.3rem);
+    }
+    section .content p{
+        font-size: clamp(0.9rem, 0.9rem + 1.2vw, 1rem);
+        margin-top: 0.75rem;
+    }
 }
 section .content button{
     font-size: 1.2rem;
